@@ -12,6 +12,11 @@ app.get("/", (req, res) => {
     res.send("Product Service is running");
 });
 
+// Swagger UI — access at http://localhost:3002/api-docs
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use("/products", productRoutes);
 
 app.listen(PORT, () => {
