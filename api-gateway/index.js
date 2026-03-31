@@ -11,13 +11,15 @@ app.use(cors());
 const routes = {
     '/api/products': 'http://localhost:3002/products',
     '/api/payments': 'http://localhost:8084/api/payments',
+    '/api/customers': 'http://localhost:5002/api/customers',
     '/docs/products': 'http://localhost:3002/api-docs',
     '/docs/payments': 'http://localhost:8084/api-docs',
+    '/docs/customers': 'http://localhost:5002/api-docs',
 };
 
 // Redirect /docs/* routes without a trailing slash to avoid Swagger relative path errors
 app.use((req, res, next) => {
-    if (req.path === '/docs/products' || req.path === '/docs/payments') {
+    if (req.path === '/docs/products' || req.path === '/docs/payments' || req.path === '/docs/customers') {
         const url = req.originalUrl;
         if (!url.endsWith('/')) {
             return res.redirect(url + '/');
@@ -50,11 +52,13 @@ app.get('/', (req, res) => {
                 <ul>
                     <li><a href="/api/products">Products API</a></li>
                     <li><a href="/api/payments">Payments API</a></li>
+                    <li><a href="/api/customers">Customers API</a></li>
                 </ul>
                 <h2>Swagger Documentation</h2>
                 <ul>
                     <li><a href="/docs/products">Products API Docs</a></li>
                     <li><a href="/docs/payments">Payments API Docs</a></li>
+                    <li><a href="/docs/customers">Customers API Docs</a></li>
                 </ul>
             </body>
         </html>

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"node index.js\" \"cd ../product-service && npm start\" \"cd ../payment-service && npm start\""
+    "start": "concurrently \"node index.js\" \"cd ../product-service && npm start\" \"cd ../payment-service && npm start\" \"cd ../customer-service && npm start\""
   },
   "keywords": [],
   "author": "",
