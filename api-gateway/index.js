@@ -13,15 +13,17 @@ const routes = {
     '/api/payments': 'http://localhost:8084/api/payments',
     '/api/customers': 'http://localhost:5002/api/customers',
     '/api/orders': 'http://localhost:5003/orders',
+    '/api/inventory': 'http://localhost:5004/api/inventory',
     '/docs/products': 'http://localhost:3002/api-docs',
     '/docs/payments': 'http://localhost:8084/api-docs',
     '/docs/customers': 'http://localhost:5002/api-docs',
     '/docs/orders': 'http://localhost:5003/api-docs',
+    '/docs/inventory': 'http://localhost:5004/api-docs',
 };
 
 // Redirect /docs/* routes without a trailing slash to avoid Swagger relative path errors
 app.use((req, res, next) => {
-    if (req.path === '/docs/products' || req.path === '/docs/payments' || req.path === '/docs/customers' || req.path === '/docs/orders') {
+    if (req.path === '/docs/products' || req.path === '/docs/payments' || req.path === '/docs/customers' || req.path === '/docs/orders' || req.path === '/docs/inventory') {
         const url = req.originalUrl;
         if (!url.endsWith('/')) {
             return res.redirect(url + '/');
@@ -56,6 +58,7 @@ app.get('/', (req, res) => {
                     <li><a href="/api/payments">Payments API</a></li>
                     <li><a href="/api/customers">Customers API</a></li>
                     <li><a href="/api/orders">Orders API</a></li>
+                    <li><a href="/api/inventory">Inventory API</a></li>
                 </ul>
                 <h2>Swagger Documentation</h2>
                 <ul>
@@ -63,6 +66,7 @@ app.get('/', (req, res) => {
                     <li><a href="/docs/payments">Payments API Docs</a></li>
                     <li><a href="/docs/customers">Customers API Docs</a></li>
                     <li><a href="/docs/orders">Orders API Docs</a></li>
+                    <li><a href="/docs/inventory">Inventory API Docs</a></li>
                 </ul>
             </body>
         </html>
