@@ -1,5 +1,7 @@
 # MTIT-microservices-architecture
 
+![System Architecture](report/system-archi.jpeg)
+
 ![Assignment-2](report/cover.png)
 
 ## Microservices Defined
