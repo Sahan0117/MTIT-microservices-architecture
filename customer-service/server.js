@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 app.use("/api/customers", customerRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 8082;
 
 app.listen(PORT, () => {
   console.log(`Customer Service running on port ${PORT}`);
