@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 const app = express();
 const PORT = 8080;
@@ -23,7 +25,7 @@ const routes = {
 
 // Redirect /docs/* routes without a trailing slash to avoid Swagger relative path errors
 app.use((req, res, next) => {
-    if (req.path === '/docs/products' || req.path === '/docs/payments' || req.path === '/docs/customers' || req.path === '/docs/orders' || req.path === '/docs/inventory') {
+    if (req.path === '/docs/products' || req.path === '/docs/payments' || req.path === '/docs/customers' || req.path === '/docs/orders' || req.path === '/docs/inventory' || req.path === '/docs/all') {
         const url = req.originalUrl;
         if (!url.endsWith('/')) {
             return res.redirect(url + '/');
@@ -31,6 +33,12 @@ app.use((req, res, next) => {
     }
     next();
 });
+
+// Full System API Documentation
+app.use('/docs/all', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    customSiteTitle: "Full System API Docs | API Gateway",
+    customCss: '.topbar { display: none }'
+}));
 
 // Setup proxy middleware for each route
 for (const [path, target] of Object.entries(routes)) {
@@ -283,6 +291,11 @@ app.get('/', (req, res) => {
             <header>
                 <h1>Microservice Architecture Hub</h1>
                 <p class="subtitle">API Gateway running at port ${PORT}</p>
+                <div style="margin-top: 2rem; animation: fadeInDown 1s ease-out both; animation-delay: 0.5s;">
+                    <a href="/docs/all" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; font-size: 1.1rem; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
+                        <span>📚</span> Full System API Docs
+                    </a>
+                </div>
             </header>
 
             <div class="grid">
