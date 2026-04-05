@@ -15,7 +15,7 @@ const routes = {
     '/api/orders': 'http://localhost:5003/orders',
     '/api/inventory': 'http://localhost:5004/api/inventory',
     '/docs/products': 'http://localhost:3002/api-docs',
-    '/docs/payments': 'http://localhost:8084/api-docs',
+    '/docs/payments': 'http://localhost:8084/api/payments/api-docs',
     '/docs/customers': 'http://localhost:5002/api-docs',
     '/docs/orders': 'http://localhost:5003/api-docs',
     '/docs/inventory': 'http://localhost:5004/api-docs',
