@@ -10,6 +10,10 @@ const options = {
     },
     servers: [
       {
+        url: "http://localhost:8080/api/payments",
+        description: "API Gateway access",
+      },
+      {
         url: "http://localhost:8084",
         description: "Direct access",
       },
